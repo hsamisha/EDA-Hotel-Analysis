@@ -1,53 +1,62 @@
-# Heart Health Analysis - Exploratory Data Analysis
+# Hotel Operations Analysis - Exploratory Data Analysis
 
 ## Project Overview
 
-Pulse of Prevention: Analyzing Heart Health for Better Outcomes is a Python-based data analysis project focused on exploring heart-health data and identifying patterns associated with heart disease.
+Hotel Harmony – Data Insights for Optimized Operations is a Python-based data analysis project focused on understanding hotel booking patterns, guest behavior, cancellations, pricing, and operational performance.
 
-The project performs data cleaning, exploratory data analysis, statistical analysis, data visualization, feature preprocessing, and machine learning using the heart health dataset.
+The project uses the Hotel Bookings Dataset and applies Python-based Exploratory Data Analysis (EDA) to identify meaningful patterns and generate data-driven insights.
 
-The analysis focuses on understanding patient demographics, clinical measurements, risk factors, relationships between variables, and differences between patients with and without heart disease.
+The analysis covers booking behavior, hotel types, arrival trends, cancellations, Average Daily Rate (ADR), market segments, distribution channels, guest types, room preferences, stay duration, and special requests.
 
 ## Objective
 
 The main objectives of this project are to:
 
-- Analyze patient heart-health data.
-- Understand patient demographics and clinical measurements.
-- Identify patterns associated with heart disease.
-- Analyze important heart-disease risk factors.
-- Compare patients with and without heart disease.
-- Identify relationships and correlations between variables.
-- Detect potential outliers in numerical features.
-- Normalize numerical features for machine learning.
-- Build a Logistic Regression model.
-- Evaluate the performance of the machine learning model.
-- Generate meaningful insights from the exploratory analysis.
+- Analyze hotel booking patterns.
+- Understand booking distribution across hotel types.
+- Analyze booking cancellations.
+- Identify the most common arrival months.
+- Study Average Daily Rate (ADR).
+- Analyze booking behavior by country.
+- Examine market segments and distribution channels.
+- Study the relationship between lead time and cancellations.
+- Analyze guest stay duration.
+- Compare new and repeated guests.
+- Identify the most popular reserved room types.
+- Analyze special requests and their relationship with ADR.
+- Identify important operational patterns and trends.
 
 ## Dataset Description
 
-The project uses the `heart.csv` dataset.
+The project uses the `hotel_bookings.csv` dataset.
 
-The dataset contains patient-level information related to heart health and includes demographic, clinical, and diagnostic attributes.
+The dataset contains information related to hotel reservations and guest bookings.
 
 ### Important Columns
 
 | Column | Description |
 |---|---|
-| `age` | Age of the patient |
-| `sex` | Sex of the patient |
-| `cp` | Chest pain type |
-| `trestbps` | Resting blood pressure |
-| `chol` | Serum cholesterol |
-| `fbs` | Fasting blood sugar |
-| `restecg` | Resting ECG result |
-| `thalach` | Maximum heart rate achieved |
-| `exang` | Exercise-induced angina |
-| `oldpeak` | ST depression |
-| `slope` | Slope of peak exercise ST segment |
-| `ca` | Number of major vessels |
-| `thal` | Thalassemia category |
-| `target` | Heart disease outcome |
+| `hotel` | Type of hotel |
+| `is_canceled` | Cancellation status |
+| `lead_time` | Number of days between booking and arrival |
+| `arrival_date_year` | Arrival year |
+| `arrival_date_month` | Arrival month |
+| `arrival_date_week_number` | Arrival week |
+| `arrival_date_day_of_month` | Arrival day |
+| `stays_in_weekend_nights` | Weekend nights stayed |
+| `stays_in_week_nights` | Weekday nights stayed |
+| `adults` | Number of adults |
+| `children` | Number of children |
+| `babies` | Number of babies |
+| `country` | Guest country |
+| `market_segment` | Booking market segment |
+| `distribution_channel` | Booking distribution channel |
+| `reserved_room_type` | Reserved room type |
+| `previous_cancellations` | Number of previous cancellations |
+| `booking_changes` | Number of booking changes |
+| `adr` | Average Daily Rate |
+| `required_car_parking_spaces` | Required parking spaces |
+| `total_of_special_requests` | Number of special requests |
 
 ## Tools & Technologies Used
 
@@ -56,10 +65,9 @@ The dataset contains patient-level information related to heart health and inclu
 - NumPy
 - Matplotlib
 - Seaborn
-- SciPy
-- Scikit-learn
 - Jupyter Notebook
 - Visual Studio Code
+- CSV Dataset
 
 ## Approach / Methodology
 
@@ -67,160 +75,204 @@ The project was completed through the following stages.
 
 ### 1. Data Collection
 
-The heart health dataset was loaded from the `heart.csv` file using Python.
+The hotel booking dataset was loaded from the `hotel_bookings.csv` file using Python.
 
-### 2. Data Cleaning
+### 2. Data Understanding
 
-The dataset was examined and prepared for analysis by checking:
+The dataset was inspected to understand:
 
+- Dataset dimensions
+- Column names
+- Sample records
+- Data types
 - Missing values
 - Duplicate records
-- Data types
 - Numerical variables
 - Categorical variables
-- Potential outliers
-- Data consistency
 
-### 3. Exploratory Data Analysis
+### 3. Data Cleaning
 
-Exploratory analysis was performed to understand:
+The dataset was prepared for analysis by performing the following steps:
 
-- Patient age distribution
-- Sex distribution
-- Chest pain types
-- Resting blood pressure
-- Cholesterol levels
-- Maximum heart rate
-- Exercise-induced angina
-- ST depression
-- Major vessels
-- Thalassemia categories
-- Heart disease outcome
+- Created a copy of the original dataset.
+- Replaced missing `agent` values with `Unknown`.
+- Replaced missing `company` values with `Unknown`.
+- Replaced missing `children` values with `0`.
+- Replaced missing `country` values with `Unknown`.
+- Converted `reservation_status_date` to datetime format.
+- Identified and removed duplicate records.
+- Converted numerical columns to appropriate numeric data types.
+- Replaced the negative ADR value with a missing value.
+- Created a `total_stay_nights` feature.
+- Created a readable cancellation label.
+- Ordered arrival months chronologically.
 
-### 4. Statistical Analysis
+### 4. Exploratory Data Analysis
 
-Statistical analysis was performed to examine relationships and differences between important variables.
+The analysis was divided into basic-level and medium-level analysis.
 
-Correlation analysis was also used to understand relationships between numerical features.
+#### Basic-Level Analysis
+
+The project examines:
+
+- Average booking lead time
+- Booking distribution by hotel type
+- Number of canceled bookings
+- Most common arrival month
+- Average number of special requests
+- Country with the highest number of bookings
+- Average ADR for each hotel type
+- Average ADR by market segment
+- ADR trends across years
+- Average weekday and weekend stay
+- Bookings made through travel agents
+- New versus repeated guest stay duration
+- Most popular reserved room type
+
+#### Medium-Level Analysis
+
+The project performs more detailed analysis of:
+
+- Cancellation rate by hotel type
+- Relationship between lead time and cancellation
+- Previous cancellations by hotel type
+- Average ADR by market segment
+- ADR trends over the years
+- Monthly ADR-based revenue proxy
+- Relationship between special requests and ADR
+- Stay duration of new and repeated guests
+- Distribution of bookings by distribution channel
+- Most frequently used distribution channel
+- Popular reserved room types
 
 ### 5. Data Visualization
 
-Visualizations were created using Matplotlib and Seaborn to identify:
+Visualizations were created to communicate booking, cancellation, pricing, guest, and operational patterns.
 
-- Distributions
-- Relationships
-- Comparisons
-- Correlations
-- Outliers
-- Differences between target groups
+The project includes visualizations such as:
 
-### 6. Feature Preprocessing
+- Distribution of bookings by hotel type
+- Bookings by arrival month
+- Booking cancellation distribution
+- Frequency of special requests
+- Average ADR by hotel type
+- Top countries by number of bookings
+- Cancellation rate by hotel type
+- Average ADR by market segment
+- Lead time versus cancellation
+- Average ADR trend over the years
+- Total ADR by arrival month
+- Special requests versus ADR
+- Stay duration for new versus repeated guests
+- Most popular reserved room types
 
-Numerical features were normalized or standardized before applying the machine learning model.
+### 6. Insight Generation
 
-### 7. Machine Learning
+After completing the EDA, the final notebook cell summarizes the important findings, trends, relationships, and observations identified from the analysis.
 
-A Logistic Regression model was developed to analyze the relationship between the selected features and the heart disease target variable.
-
-### 8. Model Evaluation
-
-The trained model was evaluated using appropriate classification evaluation metrics.
+The insights are based on the charts, calculations, statistical analysis, and results produced in the notebook.
 
 ## Analysis & Key Findings
 
-The exploratory analysis focuses on identifying patterns in patient characteristics and clinical measurements associated with the heart disease outcome.
+The analysis focuses on the following major areas.
 
-The analysis covers the following areas:
+### Booking Patterns
 
-### Patient Demographics
+Booking volumes are analyzed across:
 
-Patient age and sex were analyzed to understand the demographic distribution of the dataset.
+- Hotel types
+- Arrival months
+- Countries
+- Market segments
+- Distribution channels
 
-### Clinical Measurements
+This helps understand booking behavior and demand patterns.
 
-Important clinical measurements such as:
+### Cancellation Analysis
 
-- Resting blood pressure
-- Cholesterol
-- Maximum heart rate
-- ST depression
+The project analyzes:
 
-were explored to understand their distributions and relationships with the target outcome.
+- Number of canceled bookings
+- Cancellation rate by hotel type
+- Lead time and cancellation relationship
+- Previous cancellation behavior
 
-### Chest Pain Analysis
+This helps identify patterns that may be useful for operational planning.
 
-Different chest pain categories were analyzed to understand their distribution across patients and their relationship with the heart disease outcome.
+### Pricing Analysis
 
-### Heart Rate Analysis
+Average Daily Rate (ADR) is analyzed across:
 
-Maximum heart rate achieved during exercise was examined and compared across heart disease outcome groups.
+- Hotel types
+- Market segments
+- Years
+- Arrival months
 
-### Exercise-Induced Angina
+The project also examines the relationship between special requests and ADR.
 
-Exercise-induced angina was analyzed as one of the clinical characteristics available in the dataset.
+### Guest and Stay Analysis
 
-### Correlation Analysis
+Guest behavior is analyzed through:
 
-Correlation analysis was performed to identify relationships between numerical variables and understand which variables show stronger associations within the dataset.
+- Weekday stay duration
+- Weekend stay duration
+- New versus repeated guests
+- Total stay duration
 
-### Outlier Analysis
+### Room Analysis
 
-Potential outliers in numerical variables were identified using exploratory visualization and statistical techniques.
+Reserved room types are analyzed to identify the most frequently requested room categories.
 
-### Machine Learning Analysis
+### Distribution Channel Analysis
 
-Logistic Regression was implemented to model the relationship between the selected patient characteristics and the heart disease outcome.
+The project examines booking volumes across different distribution channels and identifies the most frequently used channels.
 
-The model evaluation results are presented in the project notebook.
+### Operational Analysis
 
-## Analysis & Key Insights
+Operational characteristics such as:
 
-The final insights from the EDA should be based on the actual analysis performed in the notebook.
+- Special requests
+- Parking requirements
+- Booking changes
+- Distribution channels
+- Lead time
+- Previous cancellations
 
-The completed analysis should summarize:
-
-- Important demographic patterns.
-- Differences between patients with and without heart disease.
-- Important patterns observed in clinical measurements.
-- Relationships between heart disease and chest pain categories.
-- Patterns observed in maximum heart rate.
-- Observations related to exercise-induced angina.
-- Important correlations between numerical variables.
-- Significant outliers identified during the analysis.
-- Machine learning model performance.
-- Variables that showed notable relationships with the target outcome.
-
-These insights should be interpreted from the actual charts, statistical analysis, and model results rather than assumptions.
+are explored to understand hotel booking behavior.
 
 ## Dashboard Overview
 
-This project is primarily an Exploratory Data Analysis and Machine Learning project.
+This project is primarily an Exploratory Data Analysis project and does not contain a separate Tableau or Looker Studio dashboard.
 
-No separate dashboard is included in the current project.
+The main analytical outputs are presented through Python visualizations in the Jupyter Notebook.
 
-The analysis results are presented through Python visualizations in the Jupyter Notebook.
+The notebook contains charts, tables, statistical results, and analytical observations.
 
 ## Recommendations
 
-Based on the analysis performed in the project, the following analytical recommendations can be considered:
+Based on the areas analyzed in the project, hotel operations teams can consider:
 
-- Examine important clinical variables together rather than relying on a single variable.
-- Use exploratory analysis to identify patterns that require further investigation.
-- Consider demographic and clinical characteristics when analyzing heart-health datasets.
-- Use correlation analysis to understand relationships between numerical variables.
-- Investigate potential outliers before applying machine learning models.
-- Apply appropriate feature preprocessing before model training.
-- Evaluate classification models using multiple performance metrics.
-- Use the findings as analytical insights rather than as a substitute for professional medical diagnosis.
+- Monitoring cancellation patterns across hotel types and booking segments.
+- Reviewing the relationship between lead time and cancellations.
+- Monitoring ADR trends across hotel types, market segments, and arrival periods.
+- Using booking and guest patterns to support operational planning.
+- Monitoring distribution-channel performance.
+- Reviewing room-type demand to support inventory planning.
+- Using special-request patterns to understand guest requirements.
+- Comparing new and repeated guest behavior to support retention strategies.
+- Continuously analyzing updated booking data to identify changes in demand and cancellation behavior.
+
+These recommendations should be refined using the specific numerical findings generated by the completed analysis.
 
 ## Conclusion
 
-The Heart Health Analysis project demonstrates the use of Python-based data analysis techniques to explore patient health data and identify patterns associated with heart disease.
+The Hotel Operations Analysis project demonstrates how Python-based Exploratory Data Analysis can be used to transform hotel booking data into meaningful operational insights.
 
-The project covers data cleaning, exploratory data analysis, statistical analysis, visualization, feature preprocessing, and Logistic Regression.
+The project covers data inspection, data cleaning, feature engineering, descriptive analysis, basic analysis, medium-level analysis, statistical exploration, and data visualization.
 
-The analysis provides a structured approach to understanding the dataset and demonstrates practical skills in Python, data analysis, visualization, statistical analysis, and machine learning.
+By analyzing booking patterns, cancellations, pricing, guest behavior, room preferences, market segments, and distribution channels, the project provides a structured analytical view of hotel operations.
 
+The final notebook insights connect the analytical results with potential operational implications and demonstrate practical skills in data cleaning, exploratory analysis, visualization, and insight generation.
 
 ## Key Insights
 
@@ -238,5 +290,4 @@ Based on the completed exploratory data analysis, the following key insights wer
 - Operational implication: [Explain how the most important findings could support hotel planning, pricing, inventory, or cancellation management.]
 
 These findings are based on the analysis performed in this notebook and should be interpreted within the context of the dataset.
-
 
